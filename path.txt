@@ -4,5 +4,5 @@
 /home/kevin/codes/scripts
 /home/kevin/codes/fengxin
 /home/kevin/codes/hft_petrocn_report
-/home/kevin/codes/flask_members
+/home/kevin/codes/flask_members develop
 /home/kevin/codes/work_utils
