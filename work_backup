@@ -19,3 +19,5 @@ with open(config.filepath) as f:
 work = Work(items)
 
 work.backup()
+
+print("Bingo,所有工作已检查完成！")
