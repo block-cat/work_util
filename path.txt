@@ -1,8 +1,8 @@
-/home/kevin/codes/Hexo github
-/home/kevin/codes/addons/shop
-/home/kevin/codes/hft_repository/hft_repository
-/home/kevin/codes/scripts
-/home/kevin/codes/fengxin
+/home/kevin/codes/Hexo
+/home/kevin/codes/addons/shop github
+/home/kevin/codes/hft_repository/hft_repository github
+/home/kevin/codes/scripts github
+/home/kevin/codes/fengxin github
 /home/kevin/codes/hft_petrocn_report
-/home/kevin/codes/flask_members develop
+/home/kevin/codes/flask_members github
 /home/kevin/codes/work_utils
