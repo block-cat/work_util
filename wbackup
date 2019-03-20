@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+
+from work.config import Config
+from work.work import Work, Item
+import argparse
+
+# 解析参数
+
+parse = argparse.ArgumentParser(description="工作小助手")
+parse.add_argument("-c", "--config", dest="configfile", help="指定配置文件路径")
+
+args = parse.parse_args()
+
+if args.configfile is None:
+    config = Config("/etc/work_util/config.ini", "Directory")
+else:
+    config = Config(config.configfile, "Directory")
+
+# 获取工作目录
+items = []
+with open(config.filepath) as f:
+    for line in f:
+        s = line.strip().split(' ')
+        if len(s) > 1:
+            items.append(Item(s[0], s[1]))
+        else:
+            items.append(Item(s[0]))
+
+
+work = Work(items)
+
+work.backup()
+
+print("Bingo,所有工作已检查完成！")
