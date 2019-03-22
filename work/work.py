@@ -51,8 +51,9 @@ class Work(object):
             # 检查是否有未提交的代码
             status_str = subprocess.check_output(
                 ["git", "status"]).decode("utf-8")
+
             # 检查当前工作目录是否有遗漏工作
-            if "Changes not staged for commit" in status_str:
+            if "Changes not staged for commit" in status_str or "Untracked files" in status_str:
                 print("当前{}分支有尚未提交的代码，正在提交...".format(branch))
                 # 有尚未提交的代码
                 os.system("git add .")
