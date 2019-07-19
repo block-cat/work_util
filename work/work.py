@@ -7,14 +7,9 @@ from autils import OST
 from functools import partial
 import os
 import subprocess
+from .config import Config
 
-logger = Logger(filename="work_backup.log", when="d").logger
-cmd = partial(OST.sudo_cmd, "kevinkong")
-
-
-def cmd_executor(cmd):
-    cmdlist = cmd.split(" ")
-    return subprocess.check_output(cmdlist).decode('utf-8').strip()
+logger = Logger(filename="wukong.log", when="d").logger
 
 
 class Item(object):
@@ -36,6 +31,12 @@ class Work(object):
         else:
             self.items = items
 
+        # self.cmd = partial(OST.sudo_cmd, password)
+
+    def cmd_executor(self, command):
+        cmdlist = command.split(" ")
+        return subprocess.check_output(cmdlist).decode('utf-8').strip()
+
     def backup(self):
         """
         检查未提交的工作
@@ -46,7 +47,7 @@ class Work(object):
             print("正在检查{}".format(item.directory))
 
             # 获取当前分支
-            branch = cmd_executor(
+            branch = self.cmd_executor(
                 "git rev-parse --abbrev-ref HEAD")
             # 检查是否有未提交的代码
             status_str = subprocess.check_output(
@@ -60,7 +61,7 @@ class Work(object):
                 os.system("git commit -m 'robot commited.'")
 
             # 获取当前所有的分支
-            branches = [b.strip() for b in cmd_executor(
+            branches = [b.strip() for b in self.cmd_executor(
                 "git branch").replace("*", "").split("\n")]
 
             # 切换分支
@@ -69,7 +70,7 @@ class Work(object):
                 os.system("git checkout {}".format(branch))
                 try:
                     # 检查当前分支是否有未push的commit
-                    unpushed = cmd_executor(
+                    unpushed = self.cmd_executor(
                         "git log {}/{}..{}".format(item.origin, branch, branch))
                     if unpushed:
                         print("当前{}分支有未推送的代码，正在远端{}推送..".format(

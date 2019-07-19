@@ -12,7 +12,7 @@ parse.add_argument("-c", "--config", dest="configfile", help="指定配置文件
 args = parse.parse_args()
 
 if args.configfile is None:
-    config = Config("/etc/work_util/config.ini", "Directory")
+    config = Config("/etc/wukong/config.ini", "Directory")
 else:
     config = Config(config.configfile, "Directory")
 
